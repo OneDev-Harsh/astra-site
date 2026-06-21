@@ -145,13 +145,13 @@ export default function Footer() {
         <div className="max-w-5xl mx-auto px-6 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="relative w-5 h-5 flex items-center justify-center">
+              {/* <div className="relative w-5 h-5 flex items-center justify-center">
                 <div className="absolute inset-0 rounded-full bg-[var(--accent)]/20" />
                 <div className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
               </div>
               <span className="text-xs text-[var(--text-muted)]">
                 astra v0.1.7
-              </span>
+              </span> */}
             </div>
 
             <div className="flex items-center gap-4 text-[10px] text-[var(--text-dim)]">

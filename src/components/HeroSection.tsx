@@ -40,100 +40,51 @@ function HeroLogo({ visible }: { visible: boolean }) {
         className="mx-auto animate-float"
       >
         <defs>
-          <linearGradient id="heroCore" x1="0%" y1="100%" x2="100%" y2="0%">
+          <linearGradient id="heroGrad" x1="0%" y1="100%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#7c3aed" />
-            <stop offset="40%" stopColor="#a78bfa" />
+            <stop offset="50%" stopColor="#a78bfa" />
             <stop offset="100%" stopColor="#c4b5fd" />
           </linearGradient>
-          <radialGradient id="heroGlowBg" cx="50%" cy="45%" r="55%">
-            <stop offset="0%" stopColor="#c4b5fd" stopOpacity="0.4" />
-            <stop offset="50%" stopColor="#a78bfa" stopOpacity="0.12" />
-            <stop offset="100%" stopColor="#7c3aed" stopOpacity="0" />
-          </radialGradient>
-          <linearGradient id="heroRing" x1="0%" y1="100%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#7c3aed" stopOpacity="0.7" />
-            <stop offset="50%" stopColor="#a78bfa" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="#c4b5fd" stopOpacity="0.1" />
+          <linearGradient id="heroGradAlt" x1="100%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stopColor="#7c3aed" />
+            <stop offset="50%" stopColor="#a78bfa" />
+            <stop offset="100%" stopColor="#c4b5fd" />
           </linearGradient>
-          <radialGradient id="heroApex" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#ede9fe" />
-            <stop offset="30%" stopColor="#d8b4fe" />
+          <radialGradient id="heroApexGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#f5f3ff" />
+            <stop offset="60%" stopColor="#ddd6fe" />
             <stop offset="100%" stopColor="#a78bfa" stopOpacity="0" />
           </radialGradient>
-          <filter id="heroSoftGlow">
-            <feGaussianBlur stdDeviation="0.7" result="blur" />
+          <filter id="heroGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="1" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
-          <filter id="heroStrongGlow">
-            <feGaussianBlur stdDeviation="1.5" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-          <filter id="heroApexGlow">
-            <feGaussianBlur stdDeviation="2" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
+          <filter id="heroShadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="0" dy="0.5" stdDeviation="0.8" floodColor="#6d28d9" floodOpacity="0.35" />
           </filter>
         </defs>
 
-        {/* Background glow */}
-        <circle cx="16" cy="16" r="15" fill="url(#heroGlowBg)" />
+        {/* Background circle for polish */}
+        <circle cx="16" cy="16" r="15" fill="#0f0a1a" stroke="#2e1f4a" strokeWidth="0.5" />
 
-        {/* Outer orbital ring */}
-        <ellipse cx="16" cy="16" rx="14" ry="5.5" fill="none" stroke="url(#heroRing)" strokeWidth="0.6" transform="rotate(-15 16 16)" opacity="0.6" />
+        {/* Apex star glow */}
+        <circle cx="16" cy="5.5" r="2.5" fill="url(#heroApexGlow)" filter="url(#heroGlow)" />
+        <circle cx="16" cy="5.5" r="0.9" fill="#f5f3ff" />
 
-        {/* Middle orbital ring */}
-        <ellipse cx="16" cy="16" rx="11" ry="4" fill="none" stroke="url(#heroRing)" strokeWidth="0.5" transform="rotate(30 16 16)" opacity="0.45" />
+        {/* Left stroke of A (thick) */}
+        <line x1="16" y1="5.5" x2="6.5" y2="27" stroke="url(#heroGradAlt)" strokeWidth="4" strokeLinecap="round" filter="url(#heroShadow)" />
 
-        {/* Inner orbital ring */}
-        <ellipse cx="16" cy="16" rx="7.5" ry="2.5" fill="none" stroke="#c4b5fd" strokeWidth="0.35" transform="rotate(-5 16 16)" opacity="0.4" />
+        {/* Right stroke of A (thick) */}
+        <line x1="16" y1="5.5" x2="25.5" y2="27" stroke="url(#heroGrad)" strokeWidth="4" strokeLinecap="round" filter="url(#heroShadow)" />
 
-        {/* Hexagonal neural core - outer */}
-        <polygon points="16,9 20,11.5 20,16.5 16,19 12,16.5 12,11.5" fill="none" stroke="#a78bfa" strokeWidth="0.7" opacity="0.5" />
-        {/* Hexagonal neural core - inner */}
-        <polygon points="16,10.5 18.5,12.25 18.5,15.75 16,17.5 13.5,15.75 13.5,12.25" fill="#a78bfa" opacity="0.08" />
+        {/* Crossbar (thick, matching weight) */}
+        <line x1="10.5" y1="18.5" x2="21.5" y2="18.5" stroke="#c4b5fd" strokeWidth="3.2" strokeLinecap="round" />
 
-        {/* Core "A" shape */}
-        <path d="M16 5 L9 23 L12.5 23 L14.5 17.5 L17.5 17.5 L19.5 23 L23 23 Z" fill="url(#heroCore)" filter="url(#heroSoftGlow)" />
-
-        {/* Apex star - bright highlight */}
-        <circle cx="16" cy="5.5" r="1.5" fill="url(#heroApex)" filter="url(#heroApexGlow)" />
-
-        {/* Crossbar */}
-        <rect x="12" y="14.5" width="8" height="1.5" rx="0.75" fill="#c4b5fd" opacity="0.75" />
-
-        {/* Neural nodes at hex vertices */}
-        <circle cx="16" cy="9" r="1.2" fill="#c4b5fd" opacity="0.95" filter="url(#heroSoftGlow)" />
-        <circle cx="20" cy="11.5" r="0.9" fill="#a78bfa" opacity="0.75" />
-        <circle cx="20" cy="16.5" r="0.9" fill="#a78bfa" opacity="0.75" />
-        <circle cx="16" cy="19" r="0.9" fill="#7c3aed" opacity="0.85" />
-        <circle cx="12" cy="16.5" r="0.9" fill="#a78bfa" opacity="0.75" />
-        <circle cx="12" cy="11.5" r="0.9" fill="#a78bfa" opacity="0.75" />
-
-        {/* Connection lines from nodes to center */}
-        <line x1="16" y1="9" x2="16" y2="14" stroke="#c4b5fd" strokeWidth="0.35" opacity="0.45" />
-        <line x1="20" y1="11.5" x2="18" y2="14" stroke="#a78bfa" strokeWidth="0.35" opacity="0.35" />
-        <line x1="12" y1="11.5" x2="14" y2="14" stroke="#a78bfa" strokeWidth="0.35" opacity="0.35" />
-
-        {/* Scattered star particles */}
-        <circle cx="5" cy="7" r="0.6" fill="#c4b5fd" opacity="0.6" />
-        <circle cx="27" cy="7" r="0.5" fill="#a78bfa" opacity="0.5" />
-        <circle cx="4" cy="22" r="0.5" fill="#7c3aed" opacity="0.55" />
-        <circle cx="28" cy="22" r="0.6" fill="#c4b5fd" opacity="0.5" />
-        <circle cx="8" cy="28" r="0.4" fill="#a78bfa" opacity="0.4" />
-        <circle cx="24" cy="28" r="0.4" fill="#a78bfa" opacity="0.4" />
-        <circle cx="16" cy="26" r="0.5" fill="#c4b5fd" opacity="0.45" />
-        <circle cx="16" cy="3" r="0.4" fill="#ede9fe" opacity="0.5" />
-
-        {/* Terminal cursor hint */}
-        <rect x="14" y="27" width="4" height="0.9" rx="0.45" fill="#a78bfa" opacity="0.35" />
+        {/* Subtle orbital arc */}
+        <ellipse cx="16" cy="20" rx="13" ry="4.5" fill="none" stroke="#a78bfa" strokeWidth="0.35" transform="rotate(-12 16 20)" opacity="0.2" />
       </svg>
     </div>
   );
@@ -216,7 +167,7 @@ export default function HeroSection() {
           }`}
         >
           {/* Hero Logo */}
-          <HeroLogo visible={visible} />
+          {/* <HeroLogo visible={visible} /> */}
 
           {/* Minimal header */}
           <div className="mb-12 text-center">
