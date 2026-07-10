@@ -21,9 +21,7 @@ export const metadata: Metadata = {
     "typescript",
     "bun",
   ],
-  icons: {
-    icon: "/favicon.svg",
-  },
+
   openGraph: {
     title: "Astra — AI-Native Development Companion",
     description:

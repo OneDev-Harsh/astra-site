@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 
+
 const navItems = [
   { label: "Home", href: "#hero", type: "anchor" as const },
   { label: "Features", href: "#features", type: "anchor" as const },
@@ -105,9 +106,7 @@ export default function CreativeNav() {
             onClick={() => handleAnchorClick("#hero")}
             className="flex items-center gap-2.5 group"
           >
-            <div className="relative flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <AstraLogo size={28} />
-            </div>
+            <img src="/astra.png" alt="Astra" style={{ width: 40, height: 40, objectFit: "contain" }} />
             <span className="text-sm font-semibold text-[var(--foreground)] group-hover:text-[var(--accent)] transition-colors">
               astra
             </span>

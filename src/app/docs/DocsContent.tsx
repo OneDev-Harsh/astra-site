@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
+import Link from "next/link";
 
 interface TocItem {
   id: string;
@@ -239,9 +240,7 @@ function SearchBar({ onNavigate }: { onNavigate: (id: string) => void }) {
     }
   }, [results, selectedIndex, handleSelect]);
 
-  useEffect(() => {
-    setSelectedIndex(-1);
-  }, [query]);
+
 
   useEffect(() => {
     if (selectedIndex >= 0 && dropdownRef.current) {
@@ -277,7 +276,7 @@ function SearchBar({ onNavigate }: { onNavigate: (id: string) => void }) {
           ref={inputRef}
           type="text"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => { setQuery(e.target.value); setSelectedIndex(-1); }}
           onFocus={() => setIsFocused(true)}
           onKeyDown={handleKeyDown}
           placeholder="Search sections..."
@@ -285,7 +284,7 @@ function SearchBar({ onNavigate }: { onNavigate: (id: string) => void }) {
         />
         {query && (
           <button
-            onClick={() => { setQuery(""); inputRef.current?.focus(); }}
+            onClick={() => { setQuery(""); setSelectedIndex(-1); inputRef.current?.focus(); }}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text-dim)] hover:text-[var(--foreground)] transition-colors"
             aria-label="Clear search"
           >
@@ -372,7 +371,7 @@ export default function DocsContent() {
           {/* Sticky Header Container */}
           <div className="sticky top-10 md:top-0 z-40 bg-[var(--background)]/90 backdrop-blur-md pt-4 pb-2 mb-6">
             {/* Back Button */}
-            <a 
+            <Link 
               href="/" 
               className="inline-flex items-center gap-2 mb-4 text-xs text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors group font-medium"
             >
@@ -390,7 +389,7 @@ export default function DocsContent() {
                 <path d="m15 18-6-6 6-6"/>
               </svg>
               Back to main page
-            </a>
+            </Link>
 
             <SearchBar onNavigate={handleNavigate} />
           </div>
