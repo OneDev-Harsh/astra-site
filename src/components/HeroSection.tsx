@@ -51,7 +51,7 @@ export default function HeroSection() {
 
   const getFramePath = (index: number) => {
     const pad = String(index).padStart(5, "0");
-    return `/frames/frame_${pad}.png`;
+    return `/frames/frame_${pad}.webp`;
   };
 
   const getNearestLoadedImage = useCallback((targetIndex: number): HTMLImageElement | null => {
@@ -128,21 +128,66 @@ export default function HeroSection() {
       setLoadedCount(prev => prev + 1);
       drawFrame(0);
 
-      // Preload remaining frames
+      // Progressive preloading to avoid network clogging
+      // Phase 1: Load "key" frames (every 4th frame + the last frame) first.
+      const keyFrames: number[] = [];
+      const remainingFrames: number[] = [];
       for (let i = 1; i < totalFrames; i++) {
-        const img = new Image();
-        img.src = getFramePath(i);
-        const index = i;
-        img.onload = () => {
-          imagesRef.current[index] = img;
-          setLoadedCount(prev => prev + 1);
-          // Force redraw current frame as new image loads
-          drawFrame(currentFrameRef.current);
-        };
-        img.onerror = () => {
-          console.error(`Failed to load frame ${index}`);
-        };
+        if (i % 4 === 0 || i === totalFrames - 1) {
+          keyFrames.push(i);
+        } else {
+          remainingFrames.push(i);
+        }
       }
+
+      // Load frames sequentially or in small parallel batches to prevent browser lockups
+      const loadBatch = async (indices: number[], batchSize = 3) => {
+        let activeIndex = 0;
+        
+        const loadNext = (): Promise<void> => {
+          if (activeIndex >= indices.length) return Promise.resolve();
+          const currentIndex = indices[activeIndex++];
+          
+          return new Promise<void>((resolve) => {
+            const img = new Image();
+            img.src = getFramePath(currentIndex);
+            img.onload = () => {
+              imagesRef.current[currentIndex] = img;
+              setLoadedCount(prev => prev + 1);
+              // Force redraw if this frame is close to current scroll position
+              if (Math.abs(currentFrameRef.current - currentIndex) < 4) {
+                drawFrame(currentFrameRef.current);
+              }
+              resolve();
+              loadNext();
+            };
+            img.onerror = () => {
+              console.error(`Failed to load frame ${currentIndex}`);
+              resolve();
+              loadNext();
+            };
+          });
+        };
+
+        const channels = Array.from(
+          { length: Math.min(batchSize, indices.length) },
+          () => loadNext()
+        );
+        await Promise.all(channels);
+      };
+
+      // Load key frames first, then load the remaining frames when idle
+      loadBatch(keyFrames, 4).then(() => {
+        const startRemaining = () => {
+          loadBatch(remainingFrames, 3);
+        };
+        
+        if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+          window.requestIdleCallback(() => startRemaining());
+        } else {
+          setTimeout(startRemaining, 200);
+        }
+      });
     };
   }, [drawFrame, totalFrames]);
 
