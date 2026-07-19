@@ -9,7 +9,7 @@ const docSections = [
     title: "Getting Started",
     icon: "🚀",
     content: {
-      description: "Install Astra and get your AI agent running in under a minutes.",
+      description: "Install Astra and get your AI agent running in under a minute.",
       items: [
         { label: "Prerequisites", detail: "Bun >= 1.0.0, OpenRouter API key (required), Firecrawl API key (optional)" },
         { label: "Quick Install", detail: "npm install -g astrabot — works on Linux, macOS, Windows" },
@@ -29,7 +29,7 @@ const docSections = [
         { label: "astra wakeup", detail: "Interactive menu with ASCII banner + session resume check" },
         { label: "astra setup", detail: "Interactive wizard for API keys, model selection, skills" },
         { label: "astra sandbox", detail: "Secure execution with OS keychain + HMAC-signed requests" },
-        { label: "astra play", detail: "Arcade — 5 HTML5 mini-games on local Bun server (port 4321)" },
+        { label: "astra play", detail: "Arcade — 6 HTML5 mini-games on local Bun server (port 4321)" },
         { label: "astra reset", detail: "Purge all configs, sessions, credentials from ~/.astra/" },
       ],
     },
@@ -54,11 +54,13 @@ const docSections = [
     title: "Tool System",
     icon: "🔧",
     content: {
-      description: "38+ typed tools exposed to the AI agent via Vercel AI SDK.",
+      description: "60+ typed tools exposed to the AI agent via Vercel AI SDK.",
       items: [
         { label: "File System (13)", detail: "read, create, modify, delete, search, grep, replace, append, insert" },
         { label: "Shell & Execution (7)", detail: "run_command, background, tests, lint, format, execute_shell" },
         { label: "Git (3)", detail: "git_status, git_diff, git_log — full repo awareness" },
+        { label: "Browser Automation (23)", detail: "Playwright-driven: navigate, click, type, screenshot, evaluate, tabs" },
+        { label: "Model Context Protocol (4)", detail: "External stdio server integrations: list, add, remove, invoke tools" },
         { label: "Project (2)", detail: "detect_framework, read_package_json — auto-detect from package.json" },
         { label: "Web (3)", detail: "web_search (DuckDuckGo/Firecrawl), web_crawl, fetch_url" },
         { label: "Planning (2)", detail: "create_plan, get_plan — in-memory task planning" },
@@ -90,7 +92,7 @@ const docSections = [
       description: "Persistent sessions with auto-resume and cross-session action history.",
       items: [
         { label: "Storage", detail: "~/.astra/sessions/index.json — atomic writes, LRU cache, 500ms debounce" },
-        { label: "Lifecycle", detail: "begin → active → completed/interrupted → resume with full context" },
+        { label: "Project Context", detail: "Automatic parsing of workspace root ASTRA.md configuration rules" },
         { label: "Resume Priority", detail: "Explicit ID → interrupted in workspace → keyword overlap ≥30%" },
         { label: "Action History", detail: "~/.astra/history/actions.jsonl — cross-session JSONL log with UUIDs" },
         { label: "Session Tools", detail: "session_status, session_search, session_resume_context built into agent" },
@@ -224,7 +226,7 @@ function DocSection({
 
       <div
         className={`overflow-hidden transition-all duration-400 ${
-          isOpen ? "max-h-[600px] opacity-100 mt-2" : "max-h-0 opacity-0"
+          isOpen ? "max-h-[750px] opacity-100 mt-2" : "max-h-0 opacity-0"
         }`}
       >
         <LedBorder className="rounded-lg">

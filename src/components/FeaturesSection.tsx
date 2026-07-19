@@ -10,28 +10,28 @@ const features = [
     color: "#a78bfa",
   },
   {
-    title: "38+ Agent Tools",
-    description: "Filesystem, shell, git, web research, project intelligence, staging, skills, and session management — all exposed as typed tools.",
+    title: "60+ Extensible Agent Tools",
+    description: "Full suite covering filesystem tracking, shell processing, Git control, and native stdio-based Model Context Protocol (MCP) servers.",
     color: "#67e8f9",
   },
   {
-    title: "Staging-First Mutations",
-    description: "No file is ever written without your explicit approval. Every mutation is staged in memory and presented with unified diffs.",
+    title: "Staging & Approval Pipeline",
+    description: "No file ever touches disk without consent. Every mutation is staged in an in-memory overlay and reviewed via unified diffs.",
     color: "#34d399",
   },
   {
     title: "Multi-Agent Orchestration",
-    description: "Coordinate multiple AI agents with 5 strategies: Sequential, Parallel, Hierarchical, Collaborative, and DAG.",
+    description: "Coordinate multiple AI teams across 5 distinct execution strategies, built-in workflow templates, and a dynamic event message broker.",
     color: "#fbbf24",
   },
   {
-    title: "Streaming Output",
-    description: "Real-time text generation with live token telemetry. Watch the agent work with input/output counters and tok/s velocity.",
+    title: "Playwright Browser Control",
+    description: "Equipped with 23 specialized cross-platform layout, interaction, screenshot, and evaluation tools for complete web automation.",
     color: "#f472b6",
   },
   {
-    title: "Persistent Sessions",
-    description: "Sessions saved to disk with LLM-generated summaries. Auto-resume on interruption with 3-tier resume priority.",
+    title: "Persistent Action History",
+    description: "Maintains a persistent global JSONL history audit log enabling cross-session action tracking and timeline queries by targeted path.",
     color: "#fb923c",
   },
 ];

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import LedGrid from "./LedGrid";
 
 export default function Footer() {
@@ -73,7 +74,7 @@ export default function Footer() {
 
             {/* Quick links grid */}
             <div
-              className={`grid grid-cols-2 sm:grid-cols-2 gap-4 mt-16 transition-all duration-700 delay-300 ${
+              className={`grid grid-cols-2 md:grid-cols-3 gap-4 mt-16 transition-all duration-700 delay-300 ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
             >
@@ -107,34 +108,23 @@ export default function Footer() {
                 <p className="text-[10px] text-[var(--text-dim)] mt-0.5">Package Registry</p>
               </a>
 
-              {/* <a
-                href="https://github.com/OneDev-Harsh/astra-cli/blob/main/LICENSE"
+              <a
+                href="https://linkedin.com/in/harsh-kumar-shaw"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group p-4 rounded-lg border border-[var(--border)] hover:border-[var(--border-bright)] bg-[var(--surface)]/40 hover:bg-[var(--surface-raised)]/60 transition-all duration-300"
+                className="group p-4 rounded-lg border border-[var(--border)] hover:border-[#0A66C2]/30 bg-[var(--surface)]/40 hover:bg-[var(--surface-raised)]/60 transition-all duration-300"
               >
-                <div className="flex items-center justify-center w-8 h-8 rounded-md bg-[var(--green)]/10 mb-3 mx-auto group-hover:bg-[var(--green)]/20 transition-colors">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <div className="flex items-center justify-center w-8 h-8 rounded-md bg-[#0A66C2]/10 mb-3 mx-auto group-hover:bg-[#0A66C2]/20 transition-colors">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A66C2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                    <rect x="2" y="9" width="4" height="12" />
+                    <circle cx="4" cy="4" r="2" />
                   </svg>
                 </div>
-                <p className="text-xs font-medium text-[var(--foreground)] group-hover:text-[var(--green)] transition-colors">MIT License</p>
-                <p className="text-[10px] text-[var(--text-dim)] mt-0.5">Open Source</p>
+                <p className="text-xs font-medium text-[var(--foreground)] group-hover:text-[#0A66C2] transition-colors">LinkedIn</p>
+                <p className="text-[10px] text-[var(--text-dim)] mt-0.5">Connect With Me</p>
               </a>
-
-              <a
-                href="/docs"
-                className="group p-4 rounded-lg border border-[var(--border)] hover:border-[var(--border-bright)] bg-[var(--surface)]/40 hover:bg-[var(--surface-raised)]/60 transition-all duration-300"
-              >
-                <div className="flex items-center justify-center w-8 h-8 rounded-md bg-[var(--accent)]/10 mb-3 mx-auto group-hover:bg-[var(--accent)]/20 transition-colors">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-                  </svg>
-                </div>
-                <p className="text-xs font-medium text-[var(--foreground)] group-hover:text-[var(--accent)] transition-colors">Docs</p>
-                <p className="text-[10px] text-[var(--text-dim)] mt-0.5">Full Reference</p>
-              </a> */}
+              
             </div>
           </div>
         </div>
@@ -145,13 +135,13 @@ export default function Footer() {
         <div className="max-w-5xl mx-auto px-6 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              {/* <div className="relative w-5 h-5 flex items-center justify-center">
+              <div className="relative w-5 h-5 flex items-center justify-center">
                 <div className="absolute inset-0 rounded-full bg-[var(--accent)]/20" />
                 <div className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
               </div>
               <span className="text-xs text-[var(--text-muted)]">
                 astra v0.1.7
-              </span> */}
+              </span>
             </div>
 
             <div className="flex items-center gap-4 text-[10px] text-[var(--text-dim)]">

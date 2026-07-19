@@ -383,7 +383,7 @@ export default function HeroSection() {
             >
               <div className="flex items-center justify-center gap-3 mb-4 select-none">
                 <span className="text-[var(--green)] text-xs font-mono">astra</span>
-                <span className="text-[var(--text-dim)] text-xs font-mono">v0.1.7</span>
+                <span className="text-[var(--yellow)] text-xs font-mono">v0.1.7</span>
                 {loadedCount < totalFrames ? (
                   <span className="text-[var(--accent)] text-[10px] font-mono animate-pulse">
                     [caching workspace assets: {Math.floor((loadedCount / totalFrames) * 100)}%]
@@ -399,10 +399,6 @@ export default function HeroSection() {
                 <br />
                 <span className="text-[var(--accent)]">AI Partner</span>
               </h1>
-              <p className="text-sm text-[var(--text-muted)] max-w-lg mx-auto leading-relaxed">
-                Five interaction modes. 38+ agent tools. Staging-first mutations.
-                Multi-agent orchestration. All in your CLI.
-              </p>
               <div className="mt-10 text-[10px] text-[var(--text-dim)] animate-bounce font-mono select-none uppercase tracking-wider">
                 scroll to explore ↓
               </div>
@@ -538,10 +534,6 @@ export default function HeroSection() {
                 <br />
                 <span className="text-[var(--accent)]">AI Partner</span>
               </h1>
-              <p className="text-sm text-[var(--text-muted)] max-w-lg mx-auto leading-relaxed mb-8">
-                Five interaction modes. 38+ agent tools. Staging-first mutations.
-                Multi-agent orchestration. All in your CLI.
-              </p>
 
               {/* CTA Buttons */}
               <div className="flex items-center justify-center gap-4 flex-wrap">
